@@ -38,7 +38,6 @@
   <!-- Favicon (inline SVG as data URI for zero extra requests) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080b14'/%3E%3Ctext y='24' x='3' font-size='22'%3E🌤%3C/text%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;600;700&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <style>
@@ -376,6 +375,7 @@
   </div>
 
   <script>
+<<<<<<< HEAD
     // Register service worker for PWA offline support
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -383,6 +383,8 @@
       });
     }
 
+=======
+>>>>>>> 794d80f204cae0eadc0e3b73dd470e7fe7f70e6c
     const LAT = 35.6762, LON = 139.6503;
 
     const WMO = {
@@ -629,6 +631,7 @@
 
       const code  = c.weather_code;
       const isDay = c.is_day === 1;
+<<<<<<< HEAD
       const temp  = Math.round(c.temperature_2m);
       const icon  = getIcon(code, isDay);
       const label = WMO[code]?.label ?? "Unknown";
@@ -642,6 +645,10 @@
       const ogTitle = document.querySelector('meta[property="og:title"]');
       if (ogTitle) ogTitle.setAttribute("content", `Tokyo Weather — ${temp}°C ${label}`);
 
+=======
+      setScene(getBgClass(code, isDay));
+
+>>>>>>> 794d80f204cae0eadc0e3b73dd470e7fe7f70e6c
       const forecastHTML = d.time.map((date, i) => `
         <div class="forecast-day" onclick="toggleDetail(${i})" role="button" tabindex="0"
              aria-label="${dayName(date, i)} forecast" onkeydown="if(event.key==='Enter')toggleDetail(${i})">
@@ -669,12 +676,21 @@
           <span class="live-status">Updated just now</span>
         </div>
         <div class="main">
+<<<<<<< HEAD
           <div class="weather-icon">${icon}</div>
           <div class="temp-row">
             <span class="temp">${temp}</span>
             <span class="temp-unit">°C</span>
           </div>
           <div class="condition">${label}</div>
+=======
+          <div class="weather-icon">${getIcon(code, isDay)}</div>
+          <div class="temp-row">
+            <span class="temp">${Math.round(c.temperature_2m)}</span>
+            <span class="temp-unit">°C</span>
+          </div>
+          <div class="condition">${WMO[code]?.label ?? "Unknown"}</div>
+>>>>>>> 794d80f204cae0eadc0e3b73dd470e7fe7f70e6c
         </div>
         <div class="divider"></div>
         <div class="stats">
@@ -690,7 +706,11 @@
           </div>
           <div class="stat">
             <span class="stat-icon">💨</span>
+<<<<<<< HEAD
             <span class="stat-value">${Math.round(c.wind_speed_10m)} <small style="font-size:10px;font-weight:400;opacity:0.7">km/h</small></span>
+=======
+            <span class="stat-value">${Math.round(c.wind_speed_10m)}</span>
+>>>>>>> 794d80f204cae0eadc0e3b73dd470e7fe7f70e6c
             <span class="stat-label">Wind</span>
           </div>
         </div>
