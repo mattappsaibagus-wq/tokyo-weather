@@ -477,15 +477,27 @@
     }
 
     async function fetchWeather() {
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
-        + `&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,is_day`
-        + `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,`
-        + `wind_speed_10m_max,uv_index_max,sunrise,sunset`
-        + `&hourly=temperature_2m,weather_code,precipitation_probability`
-        + `&timezone=Asia%2FTokyo&forecast_days=5`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.json();
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
+          + `&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,is_day`
+          + `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,`
+          + `wind_speed_10m_max,uv_index_max,sunrise,sunset`
+          + `&hourly=temperature_2m,weather_code,precipitation_probability`
+          + `&timezone=Asia%2FTokyo&forecast_days=5`;
+
+        console.log('Fetching:', url);
+        const res = await fetch(url);
+        console.log('Response status:', res.status);
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+
+        const data = await res.json();
+        console.log('Weather data:', data);
+        return data;
+      } catch (error) {
+        console.error('Fetch error:', error);
+        throw error;
+      }
     }
 
     let activeIndex = null;
@@ -722,11 +734,13 @@
     }
 
     function renderError(msg) {
+      console.error('Rendering error:', msg);
       document.getElementById("card").innerHTML = `
         <div class="loading">
           <div style="font-size:36px;opacity:0.5">⚠️</div>
           <p>Could not load weather data</p>
           <p class="error-msg">${msg}</p>
+          <p style="font-size:12px;color:var(--dim);margin-top:8px;">Check browser console (F12) for details</p>
           <button onclick="init()" style="margin-top:12px;padding:12px 28px;border:none;background:rgba(255,255,255,0.1);color:#fff;border-radius:24px;cursor:pointer;font-size:14px;font-family:inherit;font-weight:500;letter-spacing:0.5px;transition:background 0.2s;">Retry</button>
         </div>
       `;
