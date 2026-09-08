@@ -1,0 +1,35 @@
+{
+  "name": "Tokyo Weather",
+  "short_name": "Tokyo Weather",
+  "description": "Live weather conditions and 5-day forecast for Tokyo, Japan.",
+  "start_url": "/tokyo-weather/",
+  "scope": "/tokyo-weather/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080b14",
+  "theme_color": "#080b14",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["weather", "utilities"],
+  "screenshots": [
+    {
+      "src": "icons/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Tokyo Weather app showing current conditions"
+    }
+  ]
+}
